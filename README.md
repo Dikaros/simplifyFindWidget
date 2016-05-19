@@ -29,5 +29,7 @@ public boolean textLongClick(View v) {
 SimpifyUtil.findAllViews(this);//要先使用这个方法
 SimpifyUtil.registListenerforAll(this);
 ```
+> 现在还提供了ListView的OnItemClick和OnItemLongClick的注解使用,使用方法和上面所述的方法类似
+
 
 
