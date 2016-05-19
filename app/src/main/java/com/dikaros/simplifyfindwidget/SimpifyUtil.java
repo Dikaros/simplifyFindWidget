@@ -164,8 +164,10 @@ public class SimpifyUtil {
                         from = activity.getClass();
                     }
 
+                    Log.i("from",activity.getClass().getName());
+
                     //点击方法
-                    final Method clickMethod = from.getMethod(methodName, AdapterView.class, View.class, Integer.class, Long.class);
+                    final Method clickMethod = from.getDeclaredMethod(methodName, AdapterView.class, View.class, int.class, long.class);
 
                     //获取setOnClicklistener方法
                     Method m = fieldType.getMethod("setOnItemClickListener", AdapterView.OnItemClickListener.class);
@@ -249,10 +251,10 @@ public class SimpifyUtil {
                         from = activity.getClass();
                     }
                     //点击方法
-                    final Method clickMethod = from.getMethod(methodName, AdapterView.class, View.class, Integer.class, Long.class);
+                    final Method clickMethod = from.getMethod(methodName, AdapterView.class, View.class, int.class, long.class);
 
                     //获取setOnClicklistener方法
-                    Method m = fieldType.getMethod("setOnLongClickListener", AdapterView.OnItemLongClickListener.class);
+                    Method m = fieldType.getMethod("setOnItemLongClickListener", AdapterView.OnItemLongClickListener.class);
                     //设置field可设置
                     field.setAccessible(true);
 
@@ -277,8 +279,8 @@ public class SimpifyUtil {
 
             }
         } catch (Exception e) {
-            Log.e("simpifyUtil", e.getMessage());
+//            Log.e("simpifyUtil", e.getMessage());
 
-        }
+            e.printStackTrace();        }
     }
 }
