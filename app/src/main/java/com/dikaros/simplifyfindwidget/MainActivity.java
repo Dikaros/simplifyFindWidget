@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick("textClick")
     @OnLongClick("textLongClick")
-    @FindView(R.id.text1)
+    @FindView
     TextView text1;
 
 

@@ -283,4 +283,48 @@ public class SimpifyUtil {
 
             e.printStackTrace();        }
     }
+
+    public static void findAllViews(Object o,View view){
+        try {
+
+
+            //获取所有的成员变量
+            Field[] fields = o.getClass().getDeclaredFields();
+            //遍历
+            for (Field field : fields) {
+                //如果属性是view并且被FindView这个注解修饰的并且是view的子类
+                if (field.isAnnotationPresent(FindView.class)) {
+                    //成员变量类型
+                    Class fieldType = field.getType();
+
+                    //获取注解的value
+                    FindView fv = field.getAnnotation(FindView.class);
+
+                    //通过findViewById方法获取的内容
+                    Object newView;
+                    //如果是-1（默认值）
+                    if (fv.value() == -1) {
+                        throw new Exception("请指定id");
+
+                    } else {
+                        newView = fieldType.cast(view.findViewById(fv.value()));
+                    }
+
+                    if (newView == null) {
+                        throw new Exception("属性名" + field.getName() + "与xml中的id不一致");
+                    }
+                    //设置属性可以访问
+                    field.setAccessible(true);
+
+                    //设置找到的view
+                    field.set(o, newView);
+                    //关闭属性可以访问
+                    field.setAccessible(false);
+
+                }
+            }
+        } catch (Exception e) {
+            Log.e("simpifyUtil", e.getMessage());
+        }
+    }
 }
