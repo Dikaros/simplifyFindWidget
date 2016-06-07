@@ -6,20 +6,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by Dikaros on 2016/5/18.
+ * Created by Dikaros on 2016/6/7.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.METHOD })
-public @interface OnItemLongClick {
+@Target({ ElementType.FIELD })
+public @interface FindString {
     /**
-     * 用在AdapterView的子类对象上
-     * value表示的是方法名
-     * 需要方法的返回值为void
-     * 快速注册onItemLongClick方法
+     * value值，如果存在则使用这个当做id
+     * 如果不存在就默认id和属性名相同
      * @return
      */
-    public int value();
-
-
-
+    public int value() default -1;
 }

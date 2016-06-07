@@ -22,16 +22,12 @@ import com.dikaros.simplifyfindwidget.annotation.*;
 public class MainActivity extends AppCompatActivity {
 
 
-    @OnClick("textClick")
-    @OnLongClick("textLongClick")
     @FindView
     TextView text1;
 
 
     //如果后面不写id默认 id和属性名相同
     @FindView
-    @OnItemClick("lvItemClick")
-    @OnItemLongClick("lvItemLongClick")
     ListView listView;
 
 
@@ -42,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //findViewById这句要放在前面
-        SimpifyUtil.findAllViews(this);
-        SimpifyUtil.registListenerforAll(this);
+        SimpifyUtil.findAll(this);
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1);
         for (int i = 0; i < 20; i++) {
             adapter.add("item " + i);
@@ -53,23 +48,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @OnClick(R.id.text1)
     public void textClick(View v) {
-        Toast.makeText(this, "text1点击", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, v.toString()+"text1点击", Toast.LENGTH_SHORT).show();
     }
 
+
+    @OnLongClick(R.id.text1)
     public boolean textLongClick(View v) {
         Toast.makeText(this, "text1长按", Toast.LENGTH_SHORT).show();
 
         return false;
     }
 
-    public boolean lvItemClick(AdapterView<?> parent, View view, int position, long id) {
+    @OnItemClick(R.id.listView)
+    public boolean lvItemClick(AdapterView<?> parent, View view, int position) {
         Toast.makeText(this, "item" + position + "点击", Toast.LENGTH_SHORT).show();
 
         return true;
     }
 
-    public boolean lvItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    @OnItemLongClick(R.id.listView)
+    public boolean lvItemLongClick(AdapterView<?> parent, View view, int position) {
         Toast.makeText(this, "item" + position + "长按", Toast.LENGTH_SHORT).show();
 
         return true;

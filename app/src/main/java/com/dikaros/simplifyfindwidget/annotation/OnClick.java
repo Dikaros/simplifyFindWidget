@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  */
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD })
+@Target({ ElementType.METHOD })
 public @interface OnClick{
     /**
      * 用在View或其子类对象上
@@ -18,11 +18,7 @@ public @interface OnClick{
      * 快速注册onClick方法
      * @return
      */
-    public String value();
+    public int value();
 
 
-    /**
-     * 方法所属的类
-     */
-    public Class from()default Void.class;
 }

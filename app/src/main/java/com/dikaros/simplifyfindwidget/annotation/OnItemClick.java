@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Created by Dikaros on 2016/5/18.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD })
+@Target({ ElementType.METHOD })
 public @interface OnItemClick {
     /**
      * 用在AdapterView的子类对象上
@@ -18,11 +18,8 @@ public @interface OnItemClick {
      * 快速注册onLongClick方法
      * @return
      */
-    public String value();
+    public int value();
 
 
-    /**
-     * 方法所属的类
-     */
-    public Class from()default Void.class;
+
 }
