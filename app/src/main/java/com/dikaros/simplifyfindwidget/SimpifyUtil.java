@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
@@ -203,14 +204,14 @@ public class SimpifyUtil {
 
                 if (field.isAnnotationPresent(FindColor.class)) {
                     FindColor fc = field.getAnnotation(FindColor.class);
-                    Object newColor;
+                    int newColor=-100;
                     if (fc.value() == -1) {
                         initColorMap(activity);
-                        newColor = fieldType.cast(activity.getResources().getColor(colorMap.get(fieldName)));
+                        newColor =activity.getResources().getColor(colorMap.get(fieldName));
                     } else {
-                        newColor = fieldType.cast(activity.getResources().getColor(fc.value()));
+                        newColor = activity.getResources().getColor(fc.value());
                     }
-                    if (newColor == null) {
+                    if (newColor == -100) {
                         throw new Exception("属性名" + field.getName() + "与xml中的id不一致");
                     }
                     field.set(activity, newColor);
