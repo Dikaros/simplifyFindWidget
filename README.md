@@ -40,5 +40,15 @@ SimpifyUtil.findAll(this,view);
 > 现在还提供了ListView的OnItemClick和OnItemLongClick的注解使用,使用方法和上面所述的方法类似
 > 在Activity中可以根据id找到Drawable,String,Color使用的注解为@FindDrawable,@FindString,@FindColor
 
+```java
+@FindString(R.string.str_msg)
+String str;
+
+@FindColor(R.color.red)
+int colorRed;
+
+@FindDrawable(R.drawable.img)
+Drawable dra;
+```
 
 
