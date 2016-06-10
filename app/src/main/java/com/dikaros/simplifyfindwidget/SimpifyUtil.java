@@ -14,6 +14,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 
 import com.dikaros.simplifyfindwidget.annotation.FindColor;
+import com.dikaros.simplifyfindwidget.annotation.FindDimen;
 import com.dikaros.simplifyfindwidget.annotation.FindDrawable;
 import com.dikaros.simplifyfindwidget.annotation.FindString;
 import com.dikaros.simplifyfindwidget.annotation.FindView;
@@ -38,6 +39,7 @@ public class SimpifyUtil {
     static HashMap<String, Integer> drawableMap;
     static HashMap<String, Integer> colorMap;
     static HashMap<String, Integer> stringMap;
+    static HashMap<String,Integer> dimenMap;
 
 
     /**
@@ -137,6 +139,21 @@ public class SimpifyUtil {
         }
     }
 
+    private static void initDimenMap(Activity activity) throws ClassNotFoundException, IllegalAccessException {
+        if (dimenMap == null) {
+            dimenMap = new HashMap<>();
+            Class r5 = Class.forName(activity.getPackageName() + ".R$dimen");
+            Field[] strings = r5.getDeclaredFields();
+            for (Field f :
+                    strings) {
+                //获取数据
+                if (f.getType() == int.class) {
+                    dimenMap.put(f.getName(), (int) f.get(r5));
+                }
+            }
+        }
+    }
+
     /**
      * 查找到所有的view
      * 注意View
@@ -222,7 +239,7 @@ public class SimpifyUtil {
                     FindString fc = field.getAnnotation(FindString.class);
                     String newString;
                     if (fc.value() == -1) {
-                        initColorMap(activity);
+                        initStringMap(activity);
                         newString = activity.getResources().getString(stringMap.get(fieldName));
                     } else {
                         newString = activity.getResources().getString(fc.value());
@@ -233,6 +250,20 @@ public class SimpifyUtil {
                     field.set(activity, newString);
                 }
 
+                if (field.isAnnotationPresent(FindDimen.class)){
+                    FindDimen fd = field.getAnnotation(FindDimen.class);
+                    String newString;
+                    if (fd.value() == -1) {
+                        initDimenMap(activity);
+                        newString = activity.getResources().getString(dimenMap.get(fieldName));
+                    } else {
+                        newString = activity.getResources().getString(fd.value());
+                    }
+                    if (newString == null) {
+                        throw new Exception("属性名" + field.getName() + "与xml中的id不一致");
+                    }
+                    field.set(activity, newString);
+                }
                 //设置属性不可修改
                 field.setAccessible(false);
 
@@ -346,6 +377,8 @@ public class SimpifyUtil {
         }
 
     }
+
+
 
 
 //    /**
