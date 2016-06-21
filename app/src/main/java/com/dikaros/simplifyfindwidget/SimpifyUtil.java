@@ -1,16 +1,9 @@
 package com.dikaros.simplifyfindwidget;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 
 import com.dikaros.simplifyfindwidget.annotation.FindColor;
@@ -26,9 +19,7 @@ import com.dikaros.simplifyfindwidget.annotation.OnLongClick;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by Dikaros on 2016/5/18.
