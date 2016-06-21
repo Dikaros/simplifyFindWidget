@@ -4,6 +4,24 @@
 * 使用@FindView注解快速找到控件省去了findViewById的麻烦
 * 使用@OnClick(ir),@OnLongClick(id)等方法为控件快速设置监听器
 
+### 调用方法
+> 先在build.gradle添加
+```
+allprojects {
+		repositories {
+			...
+			maven { url "https://www.jitpack.io" }
+		}
+	}
+```
+> 之后
+```
+dependencies {
+	        compile 'com.github.Dikaros:simplifyFindWidget:v0.2'
+	}
+```
+
+
 ### 使用方法
 
 ```java
