@@ -5,7 +5,8 @@
 * 使用@OnClick(ir),@OnLongClick(id)等方法为控件快速设置监听器
 
 ### 调用方法
-> 先在build.gradle添加
+> 第一步，在build.gradle添加
+
 ```
 allprojects {
 		repositories {
@@ -14,7 +15,9 @@ allprojects {
 		}
 	}
 ```
-> 之后
+
+> 第二步，增加依赖
+
 ```
 dependencies {
 	        compile 'com.github.Dikaros:simplifyFindWidget:v0.2'
