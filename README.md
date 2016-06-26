@@ -2,7 +2,8 @@
 >使用注解初始化控件和设置监听器
 
 * 使用@FindView注解快速找到控件省去了findViewById的麻烦
-* 使用@OnClick(ir),@OnLongClick(id)等方法为控件快速设置监听器
+* 使用@OnClick(id)
+* @OnLongClick(id)等方法为控件快速设置监听器
 
 ### 调用方法
 > 第一步，在build.gradle添加
